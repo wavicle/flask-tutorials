@@ -1,0 +1,20 @@
+<html>
+  <body>
+  {% if name is none or language is none %}
+    <h1>Try this URL: http://localhost:8080/greet.html?name=Albert&lang=EN</h1>
+  {% else %}
+    {% if language == 'EN' %}
+      <h1>Hello, {{name}}!</h1>
+    {% elif language == 'IN' %}
+      <h1>Namaste, {{name}}!</h1>
+    {% elif language == 'ES' %}
+      <h1>Hola, {{name}}!</h1>
+    {% else %}
+      <h1>Unknown language: {{language}}. But I hope you are okay, {{name}}!</h1>
+    {% endif %}
+  {% endif %}
+  <p style="color: #0000FF">
+  This page is rendered using a Flask template. Templates make it easier to compose large HTML content.
+  </p>
+  </body>
+</html>
