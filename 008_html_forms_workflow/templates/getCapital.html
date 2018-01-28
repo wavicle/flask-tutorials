@@ -1,0 +1,20 @@
+<html>
+<body>
+<form action = "/getCapital.html" method="post">
+{% if calcSuccess %}
+<h3 style="color: #00FF00"> The Capital of {{country}} is {{capital}}</h3>
+{% endif %}
+
+ <table>
+        <tr>
+          <td>Please enter the Country</td>
+          <td><input name="country"/></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input type="submit" value="Get Capital"/></td>
+        </tr>
+</table>
+</form>
+</body>
+</html>
