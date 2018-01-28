@@ -25,6 +25,23 @@ def getProductIdFromName(name):
     return None
   conn.close()
 
+def getProductById(id):
+  conn = sqlite3.connect('mydb.db')
+  conn.row_factory = sqlite3.Row
+  row = conn.cursor().execute (
+    'SELECT * FROM product WHERE id = :id',
+    {'id': id}
+  ).fetchone()
+  if row is not None:
+    id = row['id']
+    name = row['name']
+    availableQty = row['avail_qty']
+    product = Product(id, name, availableQty)
+    return product
+  else:
+    return None
+  conn.close()
+
 def getProductByName (name):
   conn = sqlite3.connect('mydb.db')
   conn.row_factory = sqlite3.Row

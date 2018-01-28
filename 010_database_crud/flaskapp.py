@@ -1,36 +1,38 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 import sqlite3
+from Product import Product
+import ProductDao
 
 app = Flask(__name__)
 
-def getCapitalFromDB(country):
-  connection = sqlite3.connect("mydb.db")
-  connection.row_factory = sqlite3.Row
-  cursor = connection.cursor()
-  rows = cursor.execute(
-    'SELECT capital FROM country_capital WHERE country = :country',
-    {'country': country}
-  ).fetchall()
-  if len(rows) > 0:
-    return rows[0]['capital']
-  else:
-    return None
+@app.route('/productList.html')
+def productList():
+  products = ProductDao.getAllProducts()
+  return render_template ('product_list.html', products = products)
 
-@app.route('/getCapital.html', methods=['GET','POST'])
-def getCapital():
+@app.route('/deleteProduct.html')
+def deleteProduct():
+  productId = request.args.get('productId')
+  ProductDao.deleteProductById(productId)
+  return redirect('/productList.html')
+
+@app.route('/editProduct.html', methods=['GET', 'POST'])
+def editProduct():
   if request.method == 'GET':
-    return render_template(
-    'getCapital.html'
-  )
+    productId = request.args.get('productId')
+    product = ProductDao.getProductById(productId)
+    return render_template('product_add_edit.html', product = product)
   else:
-    country = request.form.get('country')
-    capital = getCapitalFromDB(country)
-    return render_template (
-      'getCapital.html',
-      country = country, capital = capital,
-      calcSuccess = capital is not None,
-      capitalNotFound = capital is None
-    )
+    productId = request.form.get('id')
+    print('Saving product with ID: ' + str(productId))
+    product = ProductDao.getProductById(productId)
+    name = request.form.get('name')
+    qty = request.form.get('qty')
+    product.name = name
+    product.availableQty = qty
+    ProductDao.updateProduct(product)
+    return render_template('product_add_edit.html', product = product, saveComplete = True)
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080)

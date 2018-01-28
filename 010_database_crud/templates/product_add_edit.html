@@ -1,0 +1,20 @@
+<html>
+<body>
+<form action="/editProduct.html" method="post">
+ <input type="hidden" name="id" value="{{product.id}}"/>
+<table>
+ <tr>
+ <td>Name:</td>
+ <td><input name="name" value="{{product.name}}"/></td>
+ </tr>
+ <tr>
+ <td>Available Quantity:</td>
+ <td><input name="qty" value="{{product.availableQty}}"/></td>
+ </tr>
+ <tr>
+ <td><input type="submit" value="Save" /></td>
+ </tr>
+</table>
+</form>
+</body>
+</html>

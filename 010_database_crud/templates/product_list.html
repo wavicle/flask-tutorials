@@ -1,0 +1,23 @@
+<html>
+<body>
+<table border="1">
+  <tr>
+    <td>ID</td>
+    <td>Name</td>
+    <td>Available Qty</td>
+    <td>Action</td>
+  </tr>
+  {% for product in products %}
+  <tr>
+    <td>{{product.id}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.availableQty}}</td>
+    <td>
+      <a href="/deleteProduct.html?productId={{product.id}}">Delete</a>
+      <a href="/editProduct.html?productId={{product.id}}">Edit</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>
