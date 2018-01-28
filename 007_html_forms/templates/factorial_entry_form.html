@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <form action="/factorial.html" method="post">
+      {% if invalidNumber %}
+      <h3 style="color: #FF0000">Invalid number: {{number}} (must be a positive integer)</h3>
+      {% endif %}
+      <table>
+        <tr>
+          <td>Please enter a number:</td>
+          <td><input name="number"/></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input type="submit" value="Calculate factorial"/></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
