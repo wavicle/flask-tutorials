@@ -4,6 +4,9 @@
       {% if invalidNumber %}
       <h3 style="color: #FF0000">Invalid number: {{number}} (must be a positive integer)</h3>
       {% endif %}
+      {% if calcSuccess %}
+      <h3 style="color: #00FF00">The factorial of {{number}} is {{result}}</h3>
+      {% endif %}
       <table>
         <tr>
           <td>Please enter a number:</td>

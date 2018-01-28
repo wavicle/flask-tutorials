@@ -3,12 +3,12 @@ app = Flask(__name__, static_url_path = '/static')
 
 @app.route('/greet.html')
 def greet():
-  name = request.args.get('name')
-  language = request.args.get('lang')
+  p_name = request.args.get('name')
+  p_language = request.args.get('lang')
   return render_template (
     'greet.html', 
-    name=name,
-    language=language
+    name = p_name,
+    language = p_language
   )
 
 if __name__ == '__main__':

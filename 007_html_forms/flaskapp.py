@@ -17,20 +17,21 @@ def isValidPositiveInt(numString):
 @app.route('/factorial.html', methods=['GET','POST'])
 def calFactorial():
   if request.method == 'GET':
-    return render_template('factorial_entry_form.html')
+    return render_template('factorial.html')
   else:
     numberString = request.form.get('number')
     if isValidPositiveInt(numberString):
       number = int(numberString)
       factorial = getFactorial(number)
       return render_template (
-        'show_factorial.html',
-        number = numberString,
-        factorial = factorial
+        'factorial.html',
+        calcSuccess = True,
+        number = number,
+        result = factorial
       )
     else:
       return render_template (
-        'factorial_entry_form.html',
+        'factorial.html',
         invalidNumber = True,
         number = numberString
       )
